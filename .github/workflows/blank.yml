@@ -18,17 +18,18 @@ jobs:
     - name: Download cygwin
       run: |
         & cmd /c 'nslookup www.cygwin.com 2>&1'
-        while ($true)
+        for ($i = 0; $i -lt 100; $i++)
         {
             try
             {
                 (New-Object Net.WebClient).DownloadFile('http://www.cygwin.com/setup-x86_64.exe', 'setup-x86_64.exe')
-                break
+                Write-Host "Downloaded file successfully"
             }
             catch
             {
                 Write-Host "There is an error during package downloading:`n $_"
-                curl -H Metadata:true "http://169.254.169.254/metadata/instance"
+                Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/metadata/instance?api-version=2019-06-01 -Method get
+                break
             }
         }
         & cmd /c 'nslookup www.cygwin.com 8.8.8.8 2>&1'
