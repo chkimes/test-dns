@@ -30,7 +30,7 @@ jobs:
             catch
             {
                 Write-Host "There is an error during package downloading:`n $_"
-                break
+                throw
             }
         }
         & cmd /c 'nslookup www.cygwin.com 8.8.8.8 2>&1'
