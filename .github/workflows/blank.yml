@@ -19,6 +19,7 @@ jobs:
       run: |
         Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/metadata/instance?api-version=2019-06-01 -Method get |% { $_.compute } | fl *
         & cmd /c 'nslookup www.cygwin.com 2>&1'
+        & cmd /c 'nslookup www.cygwin.com 8.8.8.8 2>&1'
         for ($i = 0; $i -lt 100; $i++)
         {
             try
@@ -33,5 +34,4 @@ jobs:
                 throw
             }
         }
-        & cmd /c 'nslookup www.cygwin.com 8.8.8.8 2>&1'
       shell: powershell
