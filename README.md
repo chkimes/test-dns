@@ -1,2 +1,1 @@
 # test-dns
-a
