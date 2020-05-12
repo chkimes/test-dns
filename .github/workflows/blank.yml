@@ -1,16 +1,10 @@
 name: CI (Windows)
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  schedule:
-    - cron: '1 * * * *'
+on: watch
 
 jobs:
   build:
-
+    if: github.actor == 'chkimes'
     runs-on: windows-latest
 
     steps:
