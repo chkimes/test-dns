@@ -11,6 +11,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Download cygwin
       run: |
+        cat /run/systemd/resolve/resolve.conf
+        cat /etc/resolve.conf
         Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/metadata/instance?api-version=2019-06-01 -Method get |% { $_.compute } | fl *
         ipconfig /all
         & cmd /c 'nslookup -type=A www.cygwin.com. 2>&1'
