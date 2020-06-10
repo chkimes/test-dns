@@ -1,4 +1,4 @@
-name: CI (Windows)
+name: Test DNS
 
 on: watch
 
@@ -9,7 +9,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: test dns
+    - name: Dump resolv.conf
       run: |
         cat /run/systemd/resolve/resolv.conf
         cat /etc/resolv.conf
+    
+    - name: ipconfig
+      run: |
+        ipconfig /all
+      
+    - name: VM metadata
+      run: |
+        curl http://169.254.169.254/metadata/instance?api-version=2019-06-01
+        
+    - name: nslookup
+      run:
+        nslookup mharder-formrec.cognitiveservices.azure.com
