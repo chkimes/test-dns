@@ -16,7 +16,7 @@ jobs:
     
     - name: ipconfig
       run: |
-        ipconfig /all
+        nmcli dev show eth0
       
     - name: VM metadata
       run: |
