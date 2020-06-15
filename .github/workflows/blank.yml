@@ -21,6 +21,8 @@ jobs:
         echo ===== edited resolv.conf =====
         cat /etc/resolv.conf
         
+        sudo systemctl restart systemd-resolved
+        
     
     - name: ipconfig
       run: |
