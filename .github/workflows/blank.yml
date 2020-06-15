@@ -47,9 +47,13 @@ jobs:
         
     - name: dig
       run:
+        echo ===== EDNS 127.0.0.53 =====
         dig +noall +answer mharder-formrec.cognitiveservices.azure.com @127.0.0.53
+        echo ===== NO EDNS 127.0.0.53 =====
         dig +noedns +noall +answer mharder-formrec.cognitiveservices.azure.com @127.0.0.53
+        echo ===== EDNS 168.63.129.16 =====
         dig +noall +answer mharder-formrec.cognitiveservices.azure.com @168.63.129.16
+        echo ===== NO EDNS 168.63.129.16 =====
         dig +noedns +noall +answer mharder-formrec.cognitiveservices.azure.com @168.63.129.16
 
     - name: Kill tcpdump
