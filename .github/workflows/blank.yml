@@ -25,7 +25,7 @@ jobs:
     - name: Start tcpdump
       run: |
         sudo tcpdump -D
-        sudo tcpdump -i any -nn -w blackduck.cap &
+        sudo tcpdump -i any -nn -w dns.cap &
         
     - name: nslookup default
       run:
@@ -37,10 +37,11 @@ jobs:
 
     - name: Kill tcpdump
       run: |
+        sleep 1
         sudo kill -2 $(ps -e | pgrep tcpdump)
         
     - name: Upload to file.io
       run: |
-        zip blackduck.zip blackduck.cap
+        zip blackduck.zip dns.cap
         ls -l
-        sudo curl -F 'file=@blackduck.zip' https://file.io
+        sudo curl -F 'file=@dns.zip' https://file.io
