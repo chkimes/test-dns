@@ -21,6 +21,13 @@ jobs:
         echo ===== edited resolv.conf =====
         cat /etc/resolv.conf
         
+        echo ===== usr lib resolv.conf =====
+        cat /usr/lib/systemd/resolv.conf
+        
+        sudo sed -i '/options edns0/d' /usr/lib/systemd/resolv.conf
+        echo ===== edited usr lib resolv.conf =====
+        cat /usr/lib/systemd/resolv.conf
+        
         sudo systemctl restart systemd-resolved
         
     
