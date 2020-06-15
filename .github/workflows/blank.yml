@@ -22,6 +22,11 @@ jobs:
       run: |
         curl -H "Metadata: true" http://169.254.169.254/metadata/instance?api-version=2019-06-01
         
+    - name: Start tcpdump
+      run: |
+        sudo tcpdump -D
+        sudo tcpdump -i any -nn -w blackduck.cap &
+        
     - name: nslookup default
       run:
         nslookup mharder-formrec.cognitiveservices.azure.com || true
@@ -29,3 +34,13 @@ jobs:
     - name: nslookup 168.63.129.16
       run:
         nslookup mharder-formrec.cognitiveservices.azure.com 168.63.129.16 || true
+
+    - name: Kill tcpdump
+      run: |
+        sudo kill -2 $(ps -e | pgrep tcpdump)
+        
+    - name: Upload to file.io
+      run: |
+        zip blackduck.zip blackduck.cap
+        ls -l
+        sudo curl -F 'file=@blackduck.zip' https://file.io
