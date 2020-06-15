@@ -16,7 +16,7 @@ jobs:
         echo etc resolv.conf
         cat /etc/resolv.conf
         
-        sudo sed '/options edns0/d' /etc/resolve.conf
+        sudo sed '/options edns0/d' /etc/resolv.conf
         echo edited resolv.conf
         cat /etc/resolv.conf
         
