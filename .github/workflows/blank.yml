@@ -45,15 +45,21 @@ jobs:
       run:
         nslookup mharder-formrec.cognitiveservices.azure.com 168.63.129.16 || true
         
-    - name: dig
+    - name: dig EDNS 127.0.0.53
       run:
-        echo ===== EDNS 127.0.0.53 =====
         dig +noall +answer mharder-formrec.cognitiveservices.azure.com @127.0.0.53
-        echo ===== NO EDNS 127.0.0.53 =====
+
+        
+    - name: digNO EDNS 127.0.0.53
+      run:
         dig +noedns +noall +answer mharder-formrec.cognitiveservices.azure.com @127.0.0.53
-        echo ===== EDNS 168.63.129.16 =====
+
+    - name: dig EDNS 168.63.129.16
+      run:
         dig +noall +answer mharder-formrec.cognitiveservices.azure.com @168.63.129.16
-        echo ===== NO EDNS 168.63.129.16 =====
+        
+    - name: dig NO EDNS 168.63.129.16
+      run:
         dig +noedns +noall +answer mharder-formrec.cognitiveservices.azure.com @168.63.129.16
 
     - name: Kill tcpdump
