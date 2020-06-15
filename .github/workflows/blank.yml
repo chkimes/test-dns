@@ -24,5 +24,5 @@ jobs:
         
     - name: nslookup
       run:
-        nslookup mharder-formrec.cognitiveservices.azure.com
-        nslookup mharder-formrec.cognitiveservices.azure.com 168.63.129.16
+        nslookup mharder-formrec.cognitiveservices.azure.com || true
+        nslookup mharder-formrec.cognitiveservices.azure.com 168.63.129.16 || true
