@@ -22,7 +22,10 @@ jobs:
       run: |
         curl -H "Metadata: true" http://169.254.169.254/metadata/instance?api-version=2019-06-01
         
-    - name: nslookup
+    - name: nslookup default
       run:
         nslookup mharder-formrec.cognitiveservices.azure.com || true
+    
+    - name: nslookup 168.63.129.16
+      run:
         nslookup mharder-formrec.cognitiveservices.azure.com 168.63.129.16 || true
