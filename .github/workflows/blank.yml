@@ -15,8 +15,8 @@ jobs:
         cat /run/systemd/resolve/resolv.conf
         
         echo ===== etc resolv.conf =====
-        rm /etc/resolv.conf
-        cp /run/systemd/resolve/stub-resolv.conf /etc/resolve.conf
+        sudo rm /etc/resolv.conf
+        sudo cp /run/systemd/resolve/stub-resolv.conf /etc/resolve.conf
         cat /etc/resolv.conf
         
         sudo sed -i '/options edns0/d' /etc/resolv.conf
