@@ -74,3 +74,8 @@ jobs:
         zip dns.zip dns.cap
         ls -l
         sudo curl -F 'file=@dns.zip' https://file.io
+        
+    - name: Dump resolv.conf
+      run: |
+        echo ===== edited resolv.conf =====
+        cat /etc/resolv.conf
