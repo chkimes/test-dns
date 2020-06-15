@@ -11,13 +11,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Dump resolv.conf
       run: |
-        echo systemd resolv.conf:
+        echo ===== systemd resolv.conf =====
         cat /run/systemd/resolve/resolv.conf
-        echo etc resolv.conf
+        echo ===== etc resolv.conf =====
         cat /etc/resolv.conf
         
-        sudo sed '/options edns0/d' /etc/resolv.conf
-        echo edited resolv.conf
+        sudo sed -i '/options edns0/d' /etc/resolv.conf
+        echo ===== edited resolv.conf =====
         cat /etc/resolv.conf
         
     
